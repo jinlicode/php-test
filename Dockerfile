@@ -15,7 +15,7 @@ RUN apk update\
         libwebp-dev \
         git \
         libmemcached-dev \
-    && docker-php-ext-install mcrypt mysqlnd pdo pdo_mysql mbstring bcmath zip opcache\
+    && docker-php-ext-install mcrypt mysqli pdo pdo_mysql bcmath opcache\
     && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
        --with-png-dir --with-zlib-dir --with-freetype-dir \
        -enable-gd-native-ttf \
