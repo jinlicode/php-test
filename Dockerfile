@@ -4,14 +4,19 @@ RUN apk update\
     && apk add --no-cache \
         libmcrypt-dev \
         freetype-dev \
-        libjpeg-turbo-dev \
         freetype \
-        freetype-dev \
         libpng \
         libpng-dev \
+        libjpeg \
+        jpeg-dev \
         libjpeg-turbo \
+        libjpeg-turbo-dev \
+        libwebp \
+        libwebp-dev \
         git \
         libmemcached-dev \
     && docker-php-ext-install mcrypt mysqlnd pdo pdo_mysql mbstring bcmath zip opcache\
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
+       --with-png-dir --with-zlib-dir --with-freetype-dir \
+       -enable-gd-native-ttf \
     && docker-php-ext-install -j$(nproc) gd \
