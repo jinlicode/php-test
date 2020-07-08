@@ -18,10 +18,13 @@ RUN apk update\
         zlib-dev \
         libmemcached-dev \
         autoconf \
+        gcc \
+        g++ \
+        make \
     && docker-php-ext-install mcrypt mysqli pdo_mysql bcmath opcache zip\
     && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
        --with-png-dir --with-zlib-dir --with-freetype-dir \
        -enable-gd-native-ttf \
     && docker-php-ext-install -j$(nproc) gd \
-    && pecl install memcached redis pthreads\
-    && docker-php-ext-enable memcached redis pthreads
+    && pecl install memcached redis \
+    && docker-php-ext-enable memcached redis
