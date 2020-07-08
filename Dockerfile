@@ -17,7 +17,6 @@ RUN apk update\
         zip \
         zlib-dev \
         libmemcached-dev \
-        zlib1g-dev \
     && docker-php-ext-install mcrypt mysqli pdo_mysql bcmath opcache zip\
     && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
        --with-png-dir --with-zlib-dir --with-freetype-dir \
