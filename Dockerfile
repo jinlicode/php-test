@@ -21,11 +21,11 @@ RUN apk update\
         gcc \
         g++ \
         make \
-    && docker-php-ext-install mcrypt mysqli pdo_mysql bcmath opcache zip\
-    && docker-php-ext-configure mcrypt gd --with-gd --with-webp-dir --with-jpeg-dir \
+    && docker-php-ext-install mysqli pdo_mysql bcmath opcache zip\
+    && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
        --with-png-dir --with-zlib-dir --with-freetype-dir \
        -enable-gd-native-ttf \
     && docker-php-ext-install -j$(nproc) gd \
-    && pecl install memcached redis mcrypt \
-    && docker-php-ext-enable memcached redis
+    && pecl install memcached redis mcrypt-1.0.1 \
+    && docker-php-ext-enable memcached redis mcrypt
     
