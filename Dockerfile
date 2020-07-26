@@ -26,7 +26,6 @@ RUN docker-php-ext-install mysqli pdo_mysql bcmath opcache zip
 
 RUN docker-php-ext-configure gd --with-gd=/usr/include/ \
     --with-jpeg=/usr/include/ \
-    --with-freetype=/usr/include/ \
     --with-webp=/usr/include/
 
 RUN docker-php-ext-configure --with-zlib --with-freetype --with-libzip\
