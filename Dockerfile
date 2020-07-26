@@ -15,6 +15,7 @@ RUN apk update\
         libwebp-dev \
         git \
         zip \
+        libzip-dev \
         zlib-dev \
         libmemcached-dev \
         autoconf \
