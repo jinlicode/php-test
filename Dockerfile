@@ -1,4 +1,4 @@
-FROM php:5.6.40-fpm-alpine
+FROM php:7.0.33-fpm-alpine
 
 RUN apk update\
     && apk add --no-cache \
