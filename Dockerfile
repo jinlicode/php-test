@@ -1,39 +1,69 @@
-FROM php:7.4.8-fpm-alpine
+FROM php:7.4.8-fpm
 
-RUN apk update\
-    && apk add --no-cache \
-        libmcrypt-dev \
-        freetype-dev \
-        freetype \
-        libpng \
-        libpng-dev \
-        libjpeg \
-        jpeg-dev \
-        libjpeg-turbo \
-        libjpeg-turbo-dev \
-        libwebp \
-        libwebp-dev \
-        git \
-        zip \
-        libzip-dev \
-        zlib-dev \
-        libmemcached-dev \
-        autoconf \
-        gcc \
-        g++ \
-        make 
-RUN docker-php-ext-install mysqli pdo_mysql bcmath opcache zip
+FROM php:7.2-cli
 
-RUN docker-php-ext-configure gd --with-gd=/usr/include/ \
-    --with-jpeg=/usr/include/ \
-    --with-webp=/usr/include/
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
-RUN docker-php-ext-configure --with-zlib --with-freetype --with-libzip\
-       -enable-gd-native-ttf 
+RUN install-php-extensions gd  \
+                           bcmath \
+                           apcu \
+                           amqp \
+                           bz2 \
+                           calendar \
+                           dba \
+                           enchant \
+                           exif \
+                           gettext \
+                           gmagick \
+                           gmp \
+                           grpc \
+                           http \
+                           igbinary \
+                           imagick \
+                           imap \
+                           intl \
+                           ldap \
+                           mailparse \
+                           mcrypt \
+                           memcached \
+                           mongodb \
+                           msgpack \
+                           mysqli \
+                           oauth \
+                           odbc \
+                           opcache\
+                           pdo_dblib \
+                           pdo_firebird \
+                           pdo_mysql \
+                           pdo_odbc \
+                           pdo_pgsql \
+                           pgsql \
+                           propro \
+                           protobuf \
+                           pspell \
+                           raphf \
+                           rdkafka \
+                           recode \
+                           redis \
+                           shmop \
+                           snmp \
+                           soap \
+                           sockets \
+                           solr \
+                           ssh2 \
+                           sysvmsg \
+                           sysvsem \
+                           sysvshm \
+                           tidy \
+                           timezonedb \
+                           uopz \
+                           uuid \
+                           xdebug \
+                           xhprof \
+                           xmlrpc \
+                           xsl \
+                           yaml \
+                           zip
 
-RUN docker-php-ext-install -j$(nproc) gd 
 
-RUN pecl install memcached redis mcrypt-1.0.1 
-
-RUN docker-php-ext-enable memcached redis mcrypt
     
