@@ -24,7 +24,10 @@ RUN apk update\
         make 
 RUN docker-php-ext-install mysqli pdo_mysql bcmath opcache zip
 
-RUN docker-php-ext-configure gd --with-gd --with-webp --with-jpeg 
+RUN docker-php-ext-configure gd --with-gd \
+    --with-jpeg=/usr/include/ \
+    --with-freetype=/usr/include/ \
+    --with-webp=/usr/include/
 
 RUN docker-php-ext-configure --with-zlib --with-freetype --with-libzip\
        -enable-gd-native-ttf 
