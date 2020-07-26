@@ -28,3 +28,4 @@ RUN apk update\
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install memcached redis \
     && docker-php-ext-enable memcached redis
+    
