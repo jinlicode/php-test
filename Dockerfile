@@ -1,4 +1,4 @@
-FROM php:7.4.8-fpm-alpine
+FROM php:7.4.8-fpm
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
@@ -41,6 +41,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
                         #    xhprof \
                         #    xsl \
                         #    yaml \
+                        # pgsql \
 RUN install-php-extensions gd  \
                            bz2 \
                            dba \
@@ -58,7 +59,6 @@ RUN install-php-extensions gd  \
                            pdo_odbc \
                            pdo_pgsql \
                            pgsql \
-                           redis \
                            tidy \
                            xmlrpc \
                            zip \
