@@ -7,9 +7,9 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
                         #    bcmath \
                         #    apcu \
                         #    amqp \
-                        # enchant \
-                        # calendar \
-                        #  gettext \
+                        #    enchant \
+                        #    calendar \
+                        #    gettext \
                         #    gmagick \
                         #    gmp \
                         #    grpc \
@@ -25,12 +25,10 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
                         #    protobuf \
                         #    pspell \
                         #    raphf \
-                        #    rdkafka \
                         #    recode \
                         #    shmop \
                         #    snmp \
                         #    soap \
-                        #    sockets \
                         #    solr \
                         #    ssh2 \
                         #    sysvmsg \
@@ -63,7 +61,9 @@ RUN install-php-extensions gd  \
                            redis \
                            tidy \
                            xmlrpc \
-                           zip
+                           zip \
+                           rdkafka \
+                           sockets
 
 
     
