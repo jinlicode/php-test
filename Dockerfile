@@ -52,18 +52,11 @@ RUN install-php-extensions gd  \
                            memcached \
                            mongodb \
                            mysqli \
-                           odbc \
                            opcache\
-                           pdo_dblib \
                            pdo_mysql \
-                           pdo_odbc \
                            pdo_pgsql \
-                           pgsql \
+                           redis \
                            tidy \
                            xmlrpc \
                            zip \
-                           rdkafka \
                            sockets
-
-
-    
