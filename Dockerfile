@@ -1,31 +1,66 @@
 FROM php:7.1.33-fpm-alpine
 
-RUN apk update\
-    && apk add --no-cache \
-        libmcrypt-dev \
-        freetype-dev \
-        freetype \
-        libpng \
-        libpng-dev \
-        libjpeg \
-        jpeg-dev \
-        libjpeg-turbo \
-        libjpeg-turbo-dev \
-        libwebp \
-        libwebp-dev \
-        git \
-        zip \
-        zlib-dev \
-        libmemcached-dev \
-        autoconf \
-        gcc \
-        g++ \
-        make \
-    && docker-php-ext-install mcrypt mysqli pdo_mysql bcmath opcache zip\
-    && docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
-       --with-png-dir --with-zlib-dir --with-freetype-dir \
-       -enable-gd-native-ttf \
-    && docker-php-ext-install -j$(nproc) gd \
-    && pecl install memcached redis \
-    && docker-php-ext-enable memcached redis
-    
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
+
+# 暂时不用的组件
+
+                        #    bcmath \
+                        #    apcu \
+                        #    amqp \
+                        #    enchant \
+                        #    calendar \
+                        #    gettext \
+                        #    gmagick \
+                        #    gmp \
+                        #    grpc \
+                        #    http \
+                        #    igbinary \
+                        #    intl \
+                        #    ldap \
+                        #    mailparse \
+                        #    msgpack \
+                        #    oauth \
+                        #    pdo_firebird \
+                        #    propro \
+                        #    protobuf \
+                        #    pspell \
+                        #    raphf \
+                        #    recode \
+                        #    shmop \
+                        #    snmp \
+                        #    soap \
+                        #    solr \
+                        #    ssh2 \
+                        #    sysvmsg \
+                        #    sysvsem \
+                        #    sysvshm \
+                        #    timezonedb \
+                        #    uopz \
+                        #    uuid \
+                        #    xdebug \
+                        #    xhprof \
+                        #    xsl \
+                        #    yaml \
+RUN install-php-extensions gd  \
+                           bz2 \
+                           dba \
+                           exif \
+                           imagick \
+                           imap \
+                           mcrypt \
+                           memcached \
+                           mongodb \
+                           mysqli \
+                           odbc \
+                           opcache\
+                           pdo_dblib \
+                           pdo_mysql \
+                           pdo_odbc \
+                           pdo_pgsql \
+                           pgsql \
+                           redis \
+                           tidy \
+                           xmlrpc \
+                           zip \
+                           rdkafka \
+                           sockets
