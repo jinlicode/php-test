@@ -1,4 +1,4 @@
-FROM php:7.1.33-fpm-alpine
+FROM php:7.1.33-fpm
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
@@ -61,8 +61,7 @@ RUN install-php-extensions gd  \
     zip \
     sockets
 RUN    cd /tmp \
-    && apk add --no-cache libcurl libstdc++ libc6-compat \
-    && ln /lib64/ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2 \
+    && apk install -y libcurl libstdc++ libc6-compat \
     && wget https://github.com/baidu/openrasp/releases/download/v1.3.4/rasp-php-linux.tar.bz2 \
     && tar -jxvf rasp-php-linux.tar.bz2 \
     && cd /tmp/rasp-php-2020-07-07 \
