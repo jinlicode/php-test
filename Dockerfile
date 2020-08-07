@@ -61,8 +61,9 @@ RUN install-php-extensions gd  \
     zip \
     sockets
 RUN    cd /tmp \
+    && apk add --no-cache libc6-compat \
     && wget https://github.com/baidu/openrasp/releases/download/v1.3.4/rasp-php-linux.tar.bz2 \
     && tar -jxvf rasp-php-linux.tar.bz2 \
     && cd /tmp/rasp-php-2020-07-07 \
     && php install.php -d /opt/rasp \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* 
