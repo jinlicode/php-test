@@ -42,6 +42,10 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 #    xsl \
 #    yaml \
 # pgsql \
+
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' >/etc/timezone
+
 RUN install-php-extensions gd  \
     bz2 \
     dba \
