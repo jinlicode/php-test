@@ -65,4 +65,10 @@ RUN    cd /tmp \
     && tar -jxvf rasp-php-linux.tar.bz2 \
     && cd /tmp/rasp-php-2020-07-07 \
     && php install.php -d /opt/rasp \
-    && rm -rf /tmp/* 
+    && rm -rf /tmp/* \
+    && rm -rf /opt/rasp/plugins/official.js \
+    && rm -rf /opt/rasp/conf/openrasp.yml \
+    && cd /opt/rasp/conf/ \
+    && curl -O https://raw.githubusercontent.com/jinlicode/SecurityRule/master/openrasp.yml \
+    && cd /opt/rasp/plugins/ \
+    && curl -O https://raw.githubusercontent.com/jinlicode/SecurityRule/master/plugin.js
